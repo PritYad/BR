@@ -1,25 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routes } from './app-routing.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { OrganisationsComponent } from './organisations/organisations.component';
-import { BusesComponent } from './organisations/buses/buses.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './state/reducers';
+import { EffectsModule } from '@ngrx/effects';
+import { OrganisationsEffect } from './state/organisations/organisations.effects';
+import { HttpClientModule } from '@angular/common/http';
+import { OrganisationsModule } from './organisations/organisations.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    OrganisationsComponent,
-    BusesComponent
+    AppComponent
   ],
   imports: [
+    OrganisationsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({...reducers})
+    HttpClientModule,
+    EffectsModule.forRoot([OrganisationsEffect]),
+    StoreModule.forRoot({...reducers}),
+    RouterModule.forChild(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]

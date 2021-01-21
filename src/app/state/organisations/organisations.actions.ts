@@ -1,16 +1,22 @@
 import { createAction, props } from '@ngrx/store';
-import { BusOrganisation, BusData } from '../../models/organisation';
+import { Organisation } from '../../models/organisation';
 
 export const loadOrganisationAction = createAction (
-    '[BusOrganisation] Load organisation details',
+    '[Organisation] Load organisations'
+);
+
+export const loadOrganisationSuccessAction = createAction (
+    '[Organisation] Load organisations Success',
     props<{
-        organisations: BusOrganisation[];
+        organisations: Organisation[];
+        isRetrievingData: boolean;
     }>()
 );
 
-export const loadBusesDetailsAction = createAction (
-    '[BusOrganisation] Load Buses details',
+export const loadOrganisationErrorAction = createAction (
+    '[Organisation] Load organisations Error',
     props<{
-        busData: BusData[];
+        error: string;
+        isRetrievingData: boolean;
     }>()
 );

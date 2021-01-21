@@ -1,11 +1,8 @@
-import { BusData } from '../models/organisation';
+import { OrganisationDetails, Organisation } from '../models/organisation';
 
 export interface OrganisationsState {
-    organisation: string;
-    date: string;
-    busData: BusData[];
+    organisations?: Organisation[];
 }
-
 export interface AppState {
     organisationsState: OrganisationsState;
 }

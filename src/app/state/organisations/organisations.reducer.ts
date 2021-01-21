@@ -1,30 +1,36 @@
 import { Action, createReducer, on } from '@ngrx/store';
-import { loadBusesDetailsAction, loadOrganisationAction } from './organisations.actions';
-import { BusOrganisation } from 'src/app/models/organisation';
+import { loadOrganisationAction, loadOrganisationSuccessAction, loadOrganisationErrorAction } from './organisations.actions';
+import { OrganisationDetails } from 'src/app/models/organisation';
 
-const initialSate: BusOrganisation = {
-    organisation: '',
-    date : '',
-    busData: []
+const initialSate: OrganisationDetails = {
+    organisations: [],
+    isRetrievingData: false
 };
 
 const reducer = createReducer(
     initialSate,
-    on(loadOrganisationAction, (state, action) => {
+    on(loadOrganisationAction, (state) => {
         return {
             ...state,
             isRetrievingData: true
         };
+    }),
+    on(loadOrganisationSuccessAction, (state, action) => {
+        return {
+            ...state,
+            isRetrievingData: action.isRetrievingData,
+            organisations: action.organisations
+        };
+    }),
+    on(loadOrganisationErrorAction, (state, action) => {
+        return {
+            ...state,
+            isRetrievingData: action.isRetrievingData,
+            error: action.error
+        };
     })
-    // on(loadBusesDetailsAction, (state, action) => {
-    //     return {
-    //         ...state,
-    //         isRetrievingData: action.isRetrievingData,
-
-    //     }
-    // })
 );
 
-export function organisationReducer(state: BusOrganisation, action: Action) {
+export function organisationReducer(state: OrganisationDetails = initialSate, action: Action) {
     return reducer(state, action);
 }
