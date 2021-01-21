@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { AppState, OrganisationsState } from '../state/state';
+import { AppState } from '../state/state';
 import { Store } from '@ngrx/store';
-import { takeUntil } from 'rxjs/operators';
 import { loadOrganisationAction } from '../state/organisations/organisations.actions';
-import { OrganisationDetails, Organisation } from '../models/organisation';
+import { Organisation } from '../models/organisation';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -12,7 +11,7 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./organisations.component.scss']
 })
 export class OrganisationsComponent implements OnInit {
-  organisationsState: OrganisationsState;
+  organisationsState: AppState;
   organisationsList: Organisation[];
   formGroup: FormGroup;
 
@@ -20,17 +19,9 @@ export class OrganisationsComponent implements OnInit {
 
   ngOnInit() {
     this.store.pipe().subscribe(state => {
-      const response = state.organisationsState.organisations;
-      this.organisationsList = response.data;
+      this.organisationsList = state.organisationsState.organisations;
     });
     this.store.dispatch(loadOrganisationAction());
-    this.initFormGroup();
-  }
-
-  initFormGroup() {
-      this.formGroup = new FormGroup({
-
-      });
   }
 
 }

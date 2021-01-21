@@ -3,8 +3,8 @@ import { loadOrganisationAction, loadOrganisationSuccessAction, loadOrganisation
 import { OrganisationDetails } from 'src/app/models/organisation';
 
 const initialSate: OrganisationDetails = {
-    organisations: [],
-    isRetrievingData: false
+    isRetrievingData: false,
+    organisations: []
 };
 
 const reducer = createReducer(

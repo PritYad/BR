@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { map, catchError, switchMap } from 'rxjs/operators';
 
 import { OrganisationsService } from '../../services/organisations.service';
-import { Organisation } from '../../models/organisation';
+import { OrganisationDetails } from '../../models/organisation';
 import { loadOrganisationSuccessAction, loadOrganisationErrorAction, loadOrganisationAction } from './organisations.actions';
 import { HttpErrorResponse } from '@angular/common/http';
 
@@ -23,10 +23,10 @@ export class OrganisationsEffect {
         ofType(loadOrganisationAction),
         switchMap(() =>
             this.organisationsService.getOrganisationsData().pipe(
-                map((organisations: Organisation[]) => {
+                map((response: OrganisationDetails) => {
                     return loadOrganisationSuccessAction({
-                        organisations,
-                        isRetrievingData: false
+                        organisations: response.data,
+                        isRetrievingData: response.isRetrievingData
                     });
                 }),
                 catchError((response: HttpErrorResponse) => {

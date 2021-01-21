@@ -1,8 +1,5 @@
-import { OrganisationDetails, Organisation } from '../models/organisation';
+import { OrganisationDetails } from '../models/organisation';
 
-export interface OrganisationsState {
-    organisations?: Organisation[];
-}
 export interface AppState {
-    organisationsState: OrganisationsState;
+    organisationsState?: OrganisationDetails;
 }
