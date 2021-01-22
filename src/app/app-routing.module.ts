@@ -1,14 +1,24 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { OrganisationsComponent } from './organisations/organisations.component';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 
 export const routes: Routes = [
-  { path: 'reports', component: OrganisationsComponent },
-  { path: '', redirectTo: '/reports', pathMatch: 'full' },
+  {
+    path: 'dashboard',
+    loadChildren: () =>
+      import('./organisations/organisations.module').then(mod => mod.OrganisationsModule)
+  },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 
+const routeOptions: ExtraOptions = {
+  anchorScrolling: 'enabled',
+  scrollPositionRestoration: 'enabled',
+  useHash: false,
+  onSameUrlNavigation: 'reload'
+};
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, routeOptions)],
   exports: [RouterModule]
 })
 

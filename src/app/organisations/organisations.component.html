@@ -1,1 +1,8 @@
-<p>organisations works!</p>
+<h2>Bus Reports</h2>
+<div *ngFor="let i of organisationsList">
+<app-mq-accordion [heading]="sectionHeader(i)">
+    <div *ngFor="let y of i.busData">
+        {{y.busId}}
+    </div>
+</app-mq-accordion>
+</div>

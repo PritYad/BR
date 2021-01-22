@@ -10,20 +10,22 @@ import { OrganisationsEffect } from './state/organisations/organisations.effects
 import { HttpClientModule } from '@angular/common/http';
 import { OrganisationsModule } from './organisations/organisations.module';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    OrganisationsModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([OrganisationsEffect]),
     StoreModule.forRoot({...reducers}),
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SharedModule,
+    OrganisationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

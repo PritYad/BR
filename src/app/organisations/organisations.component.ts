@@ -12,16 +12,23 @@ import { FormGroup } from '@angular/forms';
 })
 export class OrganisationsComponent implements OnInit {
   organisationsState: AppState;
-  organisationsList: Organisation[];
+  organisationsList: Organisation[] = [];
   formGroup: FormGroup;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.store.pipe().subscribe(state => {
-      this.organisationsList = state.organisationsState.organisations;
+      const data = state.organisationsState.organisations;
+      if (data.length > 0 && !state.organisationsState.isRetrievingData) {
+        this.organisationsList = data;
+      }
     });
     this.store.dispatch(loadOrganisationAction());
+  }
+
+  sectionHeader(data: Organisation) {
+    return `${data.organisation} - ${data.date}`;
   }
 
 }
