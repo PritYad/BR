@@ -1,1 +1,26 @@
-<p>buses works!</p>
+<table class="mq-table">
+    <tr class="mq-table__header-row">
+        <th *ngFor="let column of headers" class="mq-table__header-cell">
+            {{column.label}}
+        </th>
+    </tr>
+    <tr *ngFor="let row of data" class="mq-table__body-row">
+        <td *ngFor="let column of headers" class="mq-table__body-cell">
+            <span *ngIf="column.id === 'deviationFromTimetable'" [ngClass]="{
+                    'text-success ' : isBusOnTime(row),
+                    'text-primary ' : isBusLate(row),
+                    'text-error ' : isBusEarly(row),
+                    'text-secondary ' : isUnknown(row, column.id)
+                 }">
+                    <span *ngIf="isUnknown(row, column.id)">{{BUS_STATUS.unknown}}</span>
+                    <span *ngIf="isBusOnTime(row)">{{BUS_STATUS.onTime}}</span>
+                    <span *ngIf="isBusLate(row)">{{BUS_STATUS.late}}</span>
+                    <span *ngIf="isBusEarly(row)">{{BUS_STATUS.early}}</span>
+            </span>
+            <span *ngIf="column.id !== 'deviationFromTimetable'">
+                <span *ngIf="isUnknown(row, column.id)"> - </span>
+                <span *ngIf="!isUnknown(row, column.id)">{{row[column.id]}}</span>
+            </span>
+        </td>
+    </tr>
+</table>

@@ -12,5 +12,5 @@ export interface Organisation {
 export interface BusData {
     busId: string;
     routeVariant: string;
-    deviationFromTimetable: number;
+    deviationFromTimetable: number|string;
 }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from '../state/state';
 import { Store } from '@ngrx/store';
 import { loadOrganisationAction } from '../state/organisations/organisations.actions';
-import { Organisation } from '../models/organisation';
+import { Organisation, BusData } from '../models/organisation';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -10,9 +10,11 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './organisations.component.html',
   styleUrls: ['./organisations.component.scss']
 })
+
 export class OrganisationsComponent implements OnInit {
   organisationsState: AppState;
   organisationsList: Organisation[] = [];
+
   formGroup: FormGroup;
 
   constructor(private store: Store<AppState>) { }
@@ -30,5 +32,6 @@ export class OrganisationsComponent implements OnInit {
   sectionHeader(data: Organisation) {
     return `${data.organisation} - ${data.date}`;
   }
-
 }
+
+
