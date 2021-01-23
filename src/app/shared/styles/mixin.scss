@@ -10,7 +10,6 @@
     margin-left: 24px;
     margin-bottom: 24px;
     padding: 24px;
-    width: calc(100% - 48px);
     background-color: var(--mq-color-white);
 }
 
@@ -560,5 +559,9 @@ $mq-table-row-height: 48px;
     padding-bottom: 10px;
     font-family: sans-serif;
     font-weight: 300;
+}
+
+.text-bold {
+    font-weight: bold;
 }
 

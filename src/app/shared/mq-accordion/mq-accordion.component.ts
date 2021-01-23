@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-mq-accordion',
@@ -8,9 +9,15 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MqAccordionComponent implements OnInit {
 
   @Input() heading: string;
+  @Input() isOpen: boolean;
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  toggleAccordion() {
+    // this.onOpen.emit();
   }
 
 }

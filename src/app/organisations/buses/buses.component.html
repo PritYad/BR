@@ -12,14 +12,22 @@
                     'text-error ' : isBusEarly(row),
                     'text-secondary ' : isUnknown(row, column.id)
                  }">
-                    <span *ngIf="isUnknown(row, column.id)">{{BUS_STATUS.unknown}}</span>
-                    <span *ngIf="isBusOnTime(row)">{{BUS_STATUS.onTime}}</span>
-                    <span *ngIf="isBusLate(row)">{{BUS_STATUS.late}}</span>
-                    <span *ngIf="isBusEarly(row)">{{BUS_STATUS.early}}</span>
+                <span *ngIf="isUnknown(row, column.id)">{{STATUS.unknown}}</span>
+                <span *ngIf="isBusOnTime(row)">{{STATUS.onTime}}</span>
+                <span *ngIf="isBusLate(row)">{{STATUS.late}}</span>
+                <span *ngIf="isBusEarly(row)">{{STATUS.early}}</span>
             </span>
-            <span *ngIf="column.id !== 'deviationFromTimetable'">
-                <span *ngIf="isUnknown(row, column.id)"> - </span>
+            <span *ngIf="column.id === 'busId'">
+                <span *ngIf="isUnknown(row, column.id)">{{STATUS.unknown}}</span>
                 <span *ngIf="!isUnknown(row, column.id)">{{row[column.id]}}</span>
+            </span>
+            <span *ngIf="column.id === 'routeVariant'">
+                <span *ngIf="isUnknown(row, column.id)">{{STATUS.unknown}}</span>
+                <span *ngIf="!isUnknown(row, column.id)">
+                    <span *ngFor="let ele of getRouteVariantLabel(row[column.id]); index as i;">
+                        <span [ngClass]="{'text-bold': i === 0}">{{ele}} </span>
+                    </span>
+                </span>
             </span>
         </td>
     </tr>

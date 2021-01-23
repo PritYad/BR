@@ -25,7 +25,7 @@ import { SharedModule } from './shared/shared.module';
     StoreModule.forRoot({...reducers}),
     RouterModule.forChild(routes),
     SharedModule,
-    OrganisationsModule,
+    OrganisationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

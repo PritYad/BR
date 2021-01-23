@@ -1,0 +1,28 @@
+$mq-table-row-height: 48px;
+
+.mq-accordion {
+    padding: var(--mq-space-small) 0;
+    border-bottom: 1px solid var(--mq-color-grey20);
+    &__arrow {
+        float: right;
+        cursor: pointer;
+    }
+    width: 100%;
+
+    &__body-row {
+        height: $mq-table-row-height;
+        border-top: 1px solid var(--mq-color-grey20);
+    }
+
+    &__header-cell {
+        font-family: sans-serif;
+        font-weight: 500;
+    }
+
+    &__header-cell,
+    &__body-cell {
+        padding: var(--mq-space-base) var(--mq-space-small);
+        min-height: $mq-table-row-height;
+        text-align: left;
+    }
+}

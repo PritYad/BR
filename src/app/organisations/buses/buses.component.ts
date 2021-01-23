@@ -10,7 +10,7 @@ export class BusesComponent {
 
   @Input() data = [];
 
-  BUS_STATUS = {
+  STATUS = {
     onTime: 'On Time',
     late: 'Late',
     early: 'Early',
@@ -44,8 +44,12 @@ export class BusesComponent {
     return row.deviationFromTimetable < 0;
   }
 
-  isUnknown(row: BusData , id: number|string) {
-    return row[id] === null || row[id] === undefined || row[id] === 'Unknown';
+  isUnknown(row: BusData, id: string | number) {
+    return row[id] === null || row[id] === undefined || row[id].toString().toLowerCase() === 'unknown';
+  }
+
+  getRouteVariantLabel(data: string) {
+    return data.length > 3 ? [data.substring(0, 3), data.substring(4, data.length)] : [data];
   }
 
 }

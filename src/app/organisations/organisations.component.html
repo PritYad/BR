@@ -1,13 +1,13 @@
-<div class="mq-col-xs-12 app-origanisation">
-    <div class="heading-32 mq-padding-base-left">Bus Reports</div>
+<div class="app-origanisation">
+    <div class="heading-32 mq-padding-small-left mq-padding-small-bottom">Bus Reports</div>
     <div *ngFor="let i of organisationsList">
-        <app-mq-accordion [heading]="sectionHeader(i)">
+        <app-mq-accordion [heading]="sectionHeader(i)" class="mq-col-xs-12">
             <div class="mq-row">
-                <app-buses [data]="i.busData" class="mq-col-xs-10"></app-buses>
-                <textarea class="mq-col-xs-10 mq-textarea" placeholder="Enter notes here"
+                <app-buses [data]="i.busData"></app-buses>
+                <textarea class="mq-col-xs-12 mq-textarea" placeholder="Enter notes here"
                     rows="4"></textarea>
             </div>
-            <button class="mq-btn mq-btn-primary mq-margin-small-top">Save Notes</button>
+            <button class="mq-btn mq-btn-primary mq-margin-small-vertical">Save Notes</button>
         </app-mq-accordion>
     </div>
 </div>
