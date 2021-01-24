@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MqAccordionComponent } from './mq-accordion/mq-accordion.component';
-import { MqTableComponent } from './mq-table/mq-table.component';
 
 @NgModule({
-  declarations: [MqAccordionComponent, MqTableComponent],
+  declarations: [MqAccordionComponent],
   imports: [
     CommonModule
   ],
-  exports: [MqAccordionComponent, MqTableComponent]
+  exports: [MqAccordionComponent]
 })
 export class SharedModule { }

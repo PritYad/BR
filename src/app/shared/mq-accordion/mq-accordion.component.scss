@@ -1,7 +1,6 @@
 $mq-table-row-height: 48px;
 
 .mq-accordion {
-    padding: var(--mq-space-small) 0;
     border-bottom: 1px solid var(--mq-color-grey20);
     &__arrow {
         float: right;
@@ -14,15 +13,16 @@ $mq-table-row-height: 48px;
         border-top: 1px solid var(--mq-color-grey20);
     }
 
-    &__header-cell {
-        font-family: sans-serif;
-        font-weight: 500;
+    &__header-row {
+        padding: var(--mq-space-small);
     }
 
-    &__header-cell,
-    &__body-cell {
-        padding: var(--mq-space-base) var(--mq-space-small);
-        min-height: $mq-table-row-height;
-        text-align: left;
+    &__header-row:hover {
+        background: var(--mq-color-grey10);
+        cursor: pointer;
+    }
+
+    &__header-cell {
+        text-transform: capitalize;
     }
 }

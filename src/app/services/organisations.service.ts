@@ -11,7 +11,6 @@ export class OrganisationsService {
   constructor(private http: HttpClient) { }
 
   getOrganisationsData() {
-    // mock response for fetching bus organisations data
     return this.http.get(this.mockDataUrl);
   }
 }

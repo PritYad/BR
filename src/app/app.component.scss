@@ -1,3 +1,16 @@
 .page {
-    padding-top: var(--mq-space-large);
+    &__header {
+        border-bottom: 2px solid var(--mq-color-grey20);
+        background: var(--mq-color-grey10);
+    }
+    
+    &__header-logo {
+        width: 200px;
+        height: 50px;
+        padding: var(--mq-space-base) var(--mq-space-small);
+    }
+
+    &__body {
+        padding-top: var(--mq-space-large);
+    }
 }

@@ -1,13 +1,29 @@
 <div class="app-origanisation">
-    <div class="heading-32 mq-padding-small-left mq-padding-small-bottom">Bus Reports</div>
+    <div class="mq-padding-medium-left mq-padding-small-bottom">
+        <span class="heading-32">Bus Reports</span>
+        <img src="../../assets/media/directions_bus-black-36dp.svg" alt="bus_logo" class="mq-margin-base-left" style="vertical-align: bottom"/>
+    </div>
     <div *ngFor="let i of organisationsList">
-        <app-mq-accordion [heading]="sectionHeader(i)" class="mq-col-xs-12">
-            <div class="mq-row">
-                <app-buses [data]="i.busData"></app-buses>
-                <textarea class="mq-col-xs-12 mq-textarea" placeholder="Enter notes here"
-                    rows="4"></textarea>
+        <app-mq-accordion 
+            [heading]="sectionHeader(i)" 
+            class="mq-col-xs-12"
+            (click)="toggleAccordion(i)"
+            [isOpen]="i.show"
+        >
+            <!--Render buses table along with notes text area and save button-->
+            <div *ngIf="i.busData && i.busData.length > 0">
+                <div class="mq-row">
+                    <app-buses [data]="i.busData"></app-buses>
+                    <textarea class="mq-col-xs-12 mq-textarea" placeholder="Enter notes here"
+                        rows="4"></textarea>
+                </div>
+                <button class="mq-btn mq-btn-primary mq-margin-small-vertical">Save Notes</button>
             </div>
-            <button class="mq-btn mq-btn-primary mq-margin-small-vertical">Save Notes</button>
+
+            <!--Empty state message if not busData is empty-->
+            <div *ngIf="!i.busData || i.busData.length === 0" class="mq-padding-small-vertical">
+                <span class="text-secondary mq-padding-base-left">Sorry buses status report for this bus organisation is not available .</span>
+            </div>
         </app-mq-accordion>
     </div>
 </div>

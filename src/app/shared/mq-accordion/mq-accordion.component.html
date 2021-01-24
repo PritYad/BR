@@ -1,15 +1,16 @@
 <div class="mq-accordion">
-    <div class="mq-padding-base-left mq-accordion__header-row">
-        <span class="heading-24">{{heading}}</span>
-        <span *ngIf="isOpen" (click)="isOpen = false">
-            <img src="../../../assets/media/keyboard_arrow_up-black-36dp.svg" alt="up arrow" class="mq-accordion__arrow"/>
+    <div class="mq-padding-base-left mq-accordion__header-row" (click)="isOpen = !isOpen">
+        <span class="heading-24 mq-accordion__header-cell">{{heading}}</span>
+        <span *ngIf="isOpen">
+            <img src="../../../assets/media/keyboard_arrow_up-black-36dp.svg" alt="up arrow"
+                class="mq-accordion__arrow" />
         </span>
-        <span *ngIf="!isOpen" (click)="isOpen = true">
-            <img src="../../../assets/media/keyboard_arrow_down-black-36dp.svg" alt="up arrow" class="mq-accordion__arrow"/>
+        <span *ngIf="!isOpen">
+            <img src="../../../assets/media/keyboard_arrow_down-black-36dp.svg" alt="up arrow"
+                class="mq-accordion__arrow" />
         </span>
     </div>
     <div *ngIf="isOpen">
         <ng-content></ng-content>
     </div>
-
 </div>

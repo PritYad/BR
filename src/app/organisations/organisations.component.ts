@@ -7,8 +7,7 @@ import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-organisations',
-  templateUrl: './organisations.component.html',
-  styleUrls: ['./organisations.component.scss']
+  templateUrl: './organisations.component.html'
 })
 
 export class OrganisationsComponent implements OnInit {
@@ -30,7 +29,8 @@ export class OrganisationsComponent implements OnInit {
   }
 
   sectionHeader(data: Organisation) {
-    return `${data.organisation} - ${data.date}`;
+    const date = data.date === null || data.date ===  undefined ? '-' : data.date;
+    return `${data.organisation} - ${date}`;
   }
 }
 

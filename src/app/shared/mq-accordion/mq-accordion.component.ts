@@ -1,23 +1,13 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { EventEmitter } from 'events';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-mq-accordion',
   templateUrl: './mq-accordion.component.html',
   styleUrls: ['./mq-accordion.component.scss']
 })
-export class MqAccordionComponent implements OnInit {
+export class MqAccordionComponent {
 
   @Input() heading: string;
-  @Input() isOpen: boolean;
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-  toggleAccordion() {
-    // this.onOpen.emit();
-  }
+  @Input() isOpen: boolean = false;
 
 }
