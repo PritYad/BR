@@ -3,25 +3,25 @@
         <span class="heading-32">Bus Reports</span>
         <img src="../../assets/media/directions_bus-black-36dp.svg" alt="bus_logo" class="mq-margin-base-left" style="vertical-align: bottom"/>
     </div>
-    <div *ngFor="let item of formArray?.value; index as i">
+    <div *ngFor="let i of organisationsList">
         <app-mq-accordion 
-            [heading]="accordionHeader(item)" 
+            [heading]="accordionHeader(i)" 
             class="mq-col-xs-12"
-            (click)="toggleAccordion(item)"
-            [isOpen]="item.showBusData"
+            (click)="toggleAccordion(i)"
+            [isOpen]="i.showBusData"
         >
             <!--Render buses table along with notes text area and save button-->
-            <div *ngIf="item?.busData && item.busData?.length > 0 && item?.showBusData">
+            <div *ngIf="i.busData && i.busData.length > 0 && i.showBusData">
                 <div class="mq-row">
-                    <app-buses [data]="item.busData"></app-buses>
+                    <app-buses [data]="i.busData"></app-buses>
                     <textarea class="mq-col-xs-12 mq-textarea" placeholder="Enter notes here"
-                        rows="4" (keyup)="updateNotes(item, $event.target.value)" fomControlName="notes"></textarea>
+                        rows="4" [(ngModel)]="i.notes"></textarea>
                 </div>
-                <button class="mq-btn mq-btn-primary mq-margin-small-vertical" (click)="saveRetrieveNotes(item)">Save Notes</button>
+                <button class="mq-btn mq-btn-primary mq-margin-small-vertical" (click)="saveRetrieveNotes(i)">Save Notes</button>
             </div>
 
             <!--Empty state message if not busData is empty-->
-            <div *ngIf="!item?.busData || item?.busData.length === 0" class="mq-padding-small-vertical">
+            <div *ngIf="!i.busData || i.busData.length === 0" class="mq-padding-small-vertical">
                 <span class="text-secondary mq-padding-base-left">Sorry buses status report for this bus organisation is not available .</span>
             </div>
         </app-mq-accordion>

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule, routes } from './app-routing.module';
-import { ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { reducers } from './state/reducers';
@@ -19,7 +18,6 @@ import { SharedModule } from './shared/shared.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([OrganisationsEffect]),
     StoreModule.forRoot({...reducers}),

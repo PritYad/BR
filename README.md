@@ -21,7 +21,7 @@ I have made following assumptions in my code:
     ii) Late is deviationFromTimetable is greater than 300.
     iii) Early is deviationFromTimetable is less than 0.
     iv) Unknown if deviationFromTimetable is null or undefined or unknown.
-4) Saving and Retrieving part of notes is partially done as of now.
+4) Spinner and success message for Saving of notes is pending. Same for spinner on showing/hiding of busData.
 5) Have written test cases only for BusComponent as of now due to limited time.
 6) Due to limited time, have written css only for desktop version(Have written no media queries for now).
 

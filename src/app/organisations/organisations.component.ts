@@ -3,7 +3,6 @@ import { AppState } from '../state/state';
 import { Store } from '@ngrx/store';
 import { loadOrganisationAction } from '../state/organisations/organisations.actions';
 import { Organisation } from '../models/organisation';
-import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 interface OrganisationSectionDetails extends Organisation {
   showBusData?: boolean;
@@ -16,26 +15,29 @@ interface OrganisationSectionDetails extends Organisation {
 
 export class OrganisationsComponent implements OnInit {
   organisationsState: AppState;
-  formArray: FormArray;
+  organisationsList: OrganisationSectionDetails[] = [];
 
-  constructor(private store: Store<AppState>, private fb: FormBuilder) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.store.pipe().subscribe(state => {
       const data = state.organisationsState.organisations;
       if (data.length > 0 && !state.organisationsState.isRetrievingData) {
-        this.formArray = new FormArray(this.fetchOrganisationDetails(data));
+        this.fetchOrganisationDetails(data);
       }
     });
     this.store.dispatch(loadOrganisationAction());
   }
 
   fetchOrganisationDetails(data: Organisation[]) {
-    const list = [];
+    this.organisationsList = [];
     data.forEach(ele => {
-      list.push(this.createOrganisationFromGroup(ele));
+      this.organisationsList.push({
+        ...ele,
+        showBusData: false,
+        notes: this.saveRetrieveNotes(ele, 'get')
+      });
     });
-    return list;
   }
 
   accordionHeader(data: Organisation) {
@@ -43,13 +45,7 @@ export class OrganisationsComponent implements OnInit {
   }
 
   toggleAccordion(data: OrganisationSectionDetails) {
-    const flag = data.showBusData = !data.showBusData;
-    this.updateNotes(data, data.notes);
-    return flag;
-  }
-
-  updateNotes(item: OrganisationSectionDetails, value: string) {
-    item.notes = value;
+    return data.showBusData = !data.showBusData;
   }
 
   saveRetrieveNotes(item: OrganisationSectionDetails, action?: string) {
@@ -61,16 +57,6 @@ export class OrganisationsComponent implements OnInit {
     } else {
       sessionStorage.setItem(name, item.notes);
     }
-  }
-
-  createOrganisationFromGroup(item?: OrganisationSectionDetails): FormGroup {
-    return this.fb.group({
-      organisation: [item.organisation],
-      notes: [this.saveRetrieveNotes(item, 'get'), Validators.maxLength(5000)],
-      date: [item.date],
-      busData: [item.busData],
-      showBusData: [false]
-    });
   }
 }
 
