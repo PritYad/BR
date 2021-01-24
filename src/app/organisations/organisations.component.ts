@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from '../state/state';
 import { Store } from '@ngrx/store';
 import { loadOrganisationAction } from '../state/organisations/organisations.actions';
-import { Organisation, BusData } from '../models/organisation';
+import { Organisation } from '../models/organisation';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 interface OrganisationSectionDetails extends Organisation {
@@ -39,8 +39,7 @@ export class OrganisationsComponent implements OnInit {
   }
 
   accordionHeader(data: Organisation) {
-    const date = data.date === null || data.date === undefined ? '-' : data.date;
-    return `${data.organisation} - ${date}`;
+    return `${data.organisation} - ${data.date}`;
   }
 
   toggleAccordion(data: OrganisationSectionDetails) {

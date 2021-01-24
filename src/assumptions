@@ -1,0 +1,10 @@
+I have made following assumptions in my code:
+1) Organisation name will not be null or undefined.
+2) Organisation date will not be null or undefined and will come as formatted in dd/mm/yyyy from json.
+3) Was not sure how to display status based on deviationFromTimetable so have made following assumption for displaying it:
+    i) On time is deviationFromTimetable is greater than 0 and less than 300.
+    ii) Late is deviationFromTimetable is greater than 300.
+    iii) Early is deviationFromTimetable is less than 0.
+    iv) Unknown if deviationFromTimetable is null or undefined or unknown.
+4) Saving and Retrieving part of notest is partially as of now.
+5) Have written test cases only for BusComponent for now.
