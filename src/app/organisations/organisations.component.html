@@ -15,9 +15,9 @@
                 <div class="mq-row">
                     <app-buses [data]="i.busData"></app-buses>
                     <textarea class="mq-col-xs-12 mq-textarea" placeholder="Enter notes here"
-                        rows="4" value="i.notes" (keyup)="updateNotes($event, i)" fomControlName="notes"></textarea>
+                        rows="4" value="i.notes" (keyup)="updateNotes(i, $event.target.value)" fomControlName="notes"></textarea>
                 </div>
-                <button class="mq-btn mq-btn-primary mq-margin-small-vertical" (click)="saveNotes(i)">Save Notes</button>
+                <button class="mq-btn mq-btn-primary mq-margin-small-vertical" (click)="saveRetrieveNotes(i)">Save Notes</button>
             </div>
 
             <!--Empty state message if not busData is empty-->

@@ -38,7 +38,7 @@ export class OrganisationsComponent implements OnInit {
       this.organisationsList.push({
         ...ele,
         showBusData: false,
-        notes: ''
+        notes: this.saveRetrieveNotes(ele, 'get')
       });
     });
   }
@@ -49,17 +49,26 @@ export class OrganisationsComponent implements OnInit {
   }
 
   toggleAccordion(data: OrganisationSectionDetails) {
-    return data.showBusData = !data.showBusData;
+    const flag = data.showBusData = !data.showBusData;
+    this.updateNotes(data, data.notes);
+    return flag;
   }
 
-  updateNotes(event, item: OrganisationSectionDetails) {
-    item.notes = event.target.value;
+  updateNotes(item: OrganisationSectionDetails, value: string) {
+    item.notes = value;
   }
 
-  saveNotes() {
-    // to do
+  saveRetrieveNotes(item: OrganisationSectionDetails, action?: string) {
+    let name = item.organisation.replace(' ', '');
+    name = name + 'notes';
+    if (action === 'get') {
+      const value = sessionStorage.getItem(name);
+      console.log(value);
+      return value === undefined || value === null ? '' : value;
+    } else {
+      sessionStorage.setItem(name, item.notes);
+    }
   }
-
 }
 
 
