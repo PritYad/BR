@@ -10,7 +10,7 @@
                 class="mq-accordion__arrow" />
         </span>
     </div>
-    <div *ngIf="isOpen">
+    <div *ngIf="isOpen" (click)="$event.stopPropagation()">
         <ng-content></ng-content>
     </div>
 </div>

@@ -8,6 +8,6 @@ import { Component, Input } from '@angular/core';
 export class MqAccordionComponent {
 
   @Input() heading: string;
-  @Input() isOpen: boolean = false;
+  @Input() isOpen = false;
 
 }
