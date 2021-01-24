@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AppState } from '../state/state';
 import { Store } from '@ngrx/store';
 import { loadOrganisationAction } from '../state/organisations/organisations.actions';
-import { Organisation } from '../models/organisation';
-import { FormGroup } from '@angular/forms';
+import { Organisation, BusData } from '../models/organisation';
+import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 
 interface OrganisationSectionDetails extends Organisation {
   showBusData?: boolean;
@@ -16,31 +16,26 @@ interface OrganisationSectionDetails extends Organisation {
 
 export class OrganisationsComponent implements OnInit {
   organisationsState: AppState;
-  organisationsList: OrganisationSectionDetails[] = [];
+  formArray: FormArray;
 
-  formGroup: FormGroup;
-
-  constructor(private store: Store<AppState>) { }
+  constructor(private store: Store<AppState>, private fb: FormBuilder) { }
 
   ngOnInit() {
     this.store.pipe().subscribe(state => {
       const data = state.organisationsState.organisations;
       if (data.length > 0 && !state.organisationsState.isRetrievingData) {
-        this.fetchOrganisationDetails(data);
+        this.formArray = new FormArray(this.fetchOrganisationDetails(data));
       }
     });
     this.store.dispatch(loadOrganisationAction());
   }
 
   fetchOrganisationDetails(data: Organisation[]) {
-    this.organisationsList = [];
+    const list = [];
     data.forEach(ele => {
-      this.organisationsList.push({
-        ...ele,
-        showBusData: false,
-        notes: this.saveRetrieveNotes(ele, 'get')
-      });
+      list.push(this.createOrganisationFromGroup(ele));
     });
+    return list;
   }
 
   accordionHeader(data: Organisation) {
@@ -63,11 +58,20 @@ export class OrganisationsComponent implements OnInit {
     name = name + 'notes';
     if (action === 'get') {
       const value = sessionStorage.getItem(name);
-      console.log(value);
       return value === undefined || value === null ? '' : value;
     } else {
       sessionStorage.setItem(name, item.notes);
     }
+  }
+
+  createOrganisationFromGroup(item?: OrganisationSectionDetails): FormGroup {
+    return this.fb.group({
+      organisation: [item.organisation],
+      notes: [this.saveRetrieveNotes(item, 'get'), Validators.maxLength(5000)],
+      date: [item.date],
+      busData: [item.busData],
+      showBusData: [false]
+    });
   }
 }
 
