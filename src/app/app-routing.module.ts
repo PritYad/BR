@@ -7,6 +7,10 @@ export const routes: Routes = [
     loadChildren: () =>
       import('./organisations/organisations.module').then(mod => mod.OrganisationsModule)
   },
+  {
+    path: '**', // redirect to dashboard in case of empty or invalid route
+    redirectTo: '/dashboard',
+  },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
 ];
 

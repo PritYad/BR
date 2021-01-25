@@ -24,6 +24,8 @@ I have made following assumptions in my code:
 4) Spinner and success message for Saving of notes is pending. Same for spinner on showing/hiding of busData.
 5) Have written test cases only for BusComponent as of now due to limited time.
 6) Due to limited time, have written css only for desktop version(Have written no media queries for now).
+7) Multi Accordion open at the same time is allowed.
+8) Redirect to dashboard in case of empty or invalid route.
 
 ## Development server
 

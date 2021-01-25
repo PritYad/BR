@@ -289,3 +289,10 @@ $mq-table-row-height: 48px;
     font-weight: bold;
 }
 
+.mq-box-error {
+    color: var(--mq-color-red110);
+    padding: var(--mq-space-small);
+    border: 1px solid var(--mq-color-red110);
+    background: var(--mq-color-red10);
+}
+

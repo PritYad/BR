@@ -16,14 +16,19 @@ interface OrganisationSectionDetails extends Organisation {
 export class OrganisationsComponent implements OnInit {
   organisationsState: AppState;
   organisationsList: OrganisationSectionDetails[] = [];
+  showErrorMessage = false;
 
   constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
     this.store.pipe().subscribe(state => {
-      const data = state.organisationsState.organisations;
-      if (data.length > 0 && !state.organisationsState.isRetrievingData) {
-        this.fetchOrganisationDetails(data);
+      const data = state.organisationsState;
+      const isError =  data.error !== undefined && data.error !== null;
+      if (data.organisations.length > 0 && !state.organisationsState.isRetrievingData && !isError) {
+        this.fetchOrganisationDetails(data.organisations);
+        this.showErrorMessage = false;
+      } else if (data.organisations.length === 0 && !state.organisationsState.isRetrievingData && isError) {
+        this.showErrorMessage = true;
       }
     });
     this.store.dispatch(loadOrganisationAction());
