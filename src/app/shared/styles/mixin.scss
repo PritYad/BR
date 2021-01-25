@@ -218,23 +218,28 @@
 }
 
 .text-success {
-    color: var(--mq-color-green110);
+    color: green;
+    font-weight: 400;
 }
 
 .text-error {
-    color: var(--mq-color-red110);
+    color: red;
+    font-weight: 400;
 }
 
 .text-primary {
-    color: var(--mq-color-blue110);
+    color: blue;
+    font-weight: 400;
 }
 
 .text-secondary {
     color: var(--mq-color-grey90);
+    font-weight: 400;
 }
 
 .text-warning {
     color: var(--mq-color-orange110);
+    font-weight: 400;
 }
 
 $mq-table-row-height: 48px;
@@ -262,7 +267,7 @@ $mq-table-row-height: 48px;
         text-align: left;
     }
 
-    &__body-cell {
+    &__body-row td{
         font-family: sans-serif;
         font-weight: 200;
         padding: var(--mq-space-base) var(--mq-space-small);

@@ -1,42 +1,15 @@
 <table class="mq-table">
     <!-- Render table headers -->
     <tr class="mq-table__header-row">
-        <th *ngFor="let column of headers" class="mq-table__header-cell">
-            {{column.label}}
+        <th *ngFor="let heading of headers" class="mq-table__header-cell">
+            {{heading}}
         </th>
     </tr>
+
     <!-- Render table rows -->
     <tr *ngFor="let row of data" class="mq-table__body-row">
-        <td *ngFor="let column of headers" class="mq-table__body-cell">
-            
-            <!-- show status according to deviationFromTimetable value along with specific color -->
-            <span *ngIf="column.id === 'deviationFromTimetable'" [ngClass]="{
-                    'text-success ' : isBusOnTime(row),
-                    'text-primary ' : isBusLate(row),
-                    'text-error ' : isBusEarly(row),
-                    'text-secondary ' : isUnknown(row, column.id)
-                 }">
-                <span *ngIf="isUnknown(row, column.id)">{{STATUS.unknown}}</span>
-                <span *ngIf="isBusOnTime(row)">{{STATUS.onTime}}</span>
-                <span *ngIf="isBusLate(row)">{{STATUS.late}}</span>
-                <span *ngIf="isBusEarly(row)">{{STATUS.early}}</span>
-            </span>
-
-            <!-- show bus id row data -->
-            <span *ngIf="column.id === 'busId'">
-                <span *ngIf="isUnknown(row, column.id)">{{STATUS.unknown}}</span>
-                <span *ngIf="!isUnknown(row, column.id)">{{row[column.id]}}</span>
-            </span>
-
-            <!-- show routeVariant row data -->
-            <span *ngIf="column.id === 'routeVariant'">
-                <span *ngIf="isUnknown(row, column.id)">{{STATUS.unknown}}</span>
-                <span *ngIf="!isUnknown(row, column.id)">
-                    <span *ngFor="let ele of getRouteVariantLabel(row[column.id]); index as i;">
-                        <span [ngClass]="{'text-bold': i === 0}">{{ele}} </span>
-                    </span>
-                </span>
-            </span>
-        </td>
+        <td>{{ row.busId }}</td>
+        <td> <span [innerHTML]="row.routeVariant | firstThreeBold"></span></td>
+        <td><span [innerHTML]="row.deviationFromTimetable | busStatus"></span></td>
     </tr>
 </table>

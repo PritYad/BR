@@ -6,7 +6,7 @@
     </div>
     <div *ngIf="!showErrorMessage">
         <div *ngFor="let i of organisationsList">
-            <app-mq-accordion [heading]="accordionHeader(i)" class="mq-col-xs-12" (click)="toggleAccordion(i)"
+            <app-mq-accordion [heading]="accordionHeader(i)" class="mq-col-xs-10" (click)="toggleAccordion(i)"
                 [isOpen]="i.showBusData">
                 <!--Render buses table along with notes text area and save button-->
                 <div *ngIf="i.busData && i.busData.length > 0 && i.showBusData">
