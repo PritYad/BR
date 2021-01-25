@@ -7,7 +7,7 @@ To run this project :
 Clone it from https://github.com/PritYad/Br
 Run npm i(Node.js version 10.9.0 or later is required).
 Run ng serve from the console and open http://localhost:4200 in your browser.
-Have updated unit and end to end integration test cases for one file named buses.component.spec. But have tested it thoroughly. (To run this test case add f before the first describe like (fdescribe) and then run ng test from console on this project.)
+Have updated unit test cases for one file named BusStatusPipe. But have tested it thoroughly. (To run this test case add f before the first describe like (fdescribe) and then run ng test from console on this project.)
 
 Haven't used bootstrap. Have written all the css from scratch.
 Have used created own components.
@@ -22,7 +22,7 @@ I have made following assumptions in my code:
     iii) Early is deviationFromTimetable is less than 0.
     iv) Unknown if deviationFromTimetable is null or undefined or unknown.
 4) Spinner and success message for Saving of notes is pending. Same for spinner on showing/hiding of busData.
-5) Have written test cases only for BusComponent as of now due to limited time.
+5) Have written test cases only for BusStatusPipe as of now due to limited time.
 6) Due to limited time, have written css only for desktop version(Have written no media queries for now).
 7) Multi Accordion open at the same time is allowed.
 8) Redirect to dashboard in case of empty or invalid route.
