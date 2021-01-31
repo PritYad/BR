@@ -15,6 +15,8 @@
                         <textarea class="mq-col-xs-12 mq-textarea" placeholder="Enter notes here" rows="4"
                             [(ngModel)]="i.notes"></textarea>
                     </div>
+                    <app-mq-alert [showAlert]="i.showSucessMsg" message="Notes saved sucessfully." type="success">
+                    </app-mq-alert>
                     <button class="mq-btn mq-btn-primary mq-margin-small-vertical" (click)="saveRetrieveNotes(i)">Save
                         Notes</button>
                 </div>
@@ -22,13 +24,14 @@
                 <!--Empty state message if busData is empty-->
                 <div *ngIf="!i.busData || i.busData.length === 0" class="mq-padding-small-vertical">
                     <span class="text-secondary mq-padding-base-left">Sorry buses status report for this bus
-                        organisation is not available .</span>
+                        organisation is not available.</span>
                 </div>
             </app-mq-accordion>
         </div>
     </div>
-    <div *ngIf="showErrorMessage">
-        <p class="text-error mq-box-errormq-padding-medium-left">Oops! Something went wrong! Try reloading the page
-            again.</p>
-    </div>
+    <app-mq-alert 
+        *ngIf="showErrorMessage" 
+        message="Oops! Something went wrong! Try reloading the page again." 
+        [type]="error">
+    </app-mq-alert>
 </div>

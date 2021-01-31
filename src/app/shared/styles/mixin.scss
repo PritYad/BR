@@ -1,8 +1,8 @@
 .mq-tile {
-    background-color: var(--mq-color-white);
     box-shadow: var(--mq-boxshadow-l1-down);
-    border-radius: calc(var(--mq-space-base) / 2);
     padding: var(--mq-space-medium);
+    padding: 24px 32px;
+    margin-bottom: var(--mq-space-small);
 }
 
 .mq-container {
@@ -11,6 +11,10 @@
     margin-bottom: 24px;
     padding: 24px;
     background-color: var(--mq-color-white);
+    display: block;
+    max-width: 1000px;
+    width: 70%;
+    margin: auto;
 }
 
 .mq-row {
@@ -250,13 +254,16 @@ $mq-table-row-height: 48px;
     border-collapse: collapse; 
 
     &__header-row {
-        background: var(--mq-color-blue30);
+        background: var(--mq-color-primary);
+        color: var(--mq-color-white);
         height: $mq-table-row-height;
+        word-wrap: break-word;
     }
 
     &__body-row {
         height: $mq-table-row-height;
         border-top: 1px solid var(--mq-color-grey20);
+        word-wrap: break-word;
     }
 
     &__header-cell {
@@ -293,11 +300,3 @@ $mq-table-row-height: 48px;
 .text-bold {
     font-weight: bold;
 }
-
-.mq-box-error {
-    color: var(--mq-color-red110);
-    padding: var(--mq-space-small);
-    border: 1px solid var(--mq-color-red110);
-    background: var(--mq-color-red10);
-}
-

@@ -1,0 +1,33 @@
+.mq-box {
+    padding: var(--mq-space-small);
+    border-radius: calc(var(--mq-space-base) / 2);
+
+    &__error {
+        color: var(--mq-color-red110);
+        border: 1px solid var(--mq-color-red110);
+        background: var(--mq-color-red10);
+    }
+
+    &__warning {
+        color: var(--mq-color-orange110);
+        border: 1px solid var(--mq-color-orange110);
+        background: var(--mq-color-orange10);
+    }
+
+    &__success {
+        color: var(--mq-color-green110);
+        border: 1px solid var(--mq-color-green110);
+        background: var(--mq-color-green10);
+    }
+
+    &__close {
+        height: var(--mq-space-base);
+        float: right;
+        vertical-align: bottom;
+        margin-right: var(--mq-space-base);
+    }
+
+    &__close:hover {
+        cursor: pointer;
+    }
+}
